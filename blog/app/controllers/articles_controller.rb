@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
 
 	def create
 	  @article = Article.new(article_params)
+	  @article.published_at = Time.now
 	  if @article.save
 	  	redirect_to @article
 	  else
@@ -44,6 +45,6 @@ class ArticlesController < ApplicationController
   end
 	private
 	  def article_params
-	    params.require(:article).permit(:title, :text)
+	    params.require(:article).permit(:category_id, :title, :text, :published_at, :description)
 	  end
 end
